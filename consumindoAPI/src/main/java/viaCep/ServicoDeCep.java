@@ -4,6 +4,7 @@ package viaCep;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -23,7 +24,7 @@ public class ServicoDeCep {
     public static Endereco buscarEnderecoPelo(String cep) throws Exception{
         String urlParaChamada = webService + cep + "/json/";
         
-        //try{
+        try{
             URL url = new URL(urlParaChamada);
             HttpURLConnection conexao = (HttpURLConnection) url.openConnection();
             
@@ -38,9 +39,9 @@ public class ServicoDeCep {
             Endereco endereco = gson.fromJson(jsonEmString, Endereco.class);
             
             return endereco;
-        //}
-        //catch(Exception e){
-           // throw new Exception("ERRO: "+ e);
-        //}
+        }
+        catch(IOException | RuntimeException e){
+            throw new Exception("ERRO: "+ e);
+        }
     }
   }
