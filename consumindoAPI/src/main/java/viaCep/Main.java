@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) throws Exception{
         
         System.out.println("informe seu cep: ");
-        String cep = new Scanner(System.in).nextLine();
-        Endereco endereco = new ServicoDeCep.buscarEnderecoPelo(cep);
+        String meuCep = new Scanner(System.in).nextLine();
+        Endereco endereco = ServicoDeCep.buscarEnderecoPelo(meuCep);
         
         System.out.println("rua: "+ endereco.getRua());
         System.out.println("bairro: "+ endereco.getBairro());

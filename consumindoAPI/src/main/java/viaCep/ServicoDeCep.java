@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package viaCep;
+
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -18,13 +17,13 @@ import java.net.HttpURLConnection;
  */
 public class ServicoDeCep {
     
-    static String webService = "http://viacep.com.br/ws/";
+    static String webService = "https://viacep.com.br/ws/";
     static int codigoSucesso = 200;
     
     public static Endereco buscarEnderecoPelo(String cep) throws Exception{
-        String urlParaChamada = webService + cep + "/json";
+        String urlParaChamada = webService + cep + "/json/";
         
-        try{
+        //try{
             URL url = new URL(urlParaChamada);
             HttpURLConnection conexao = (HttpURLConnection) url.openConnection();
             
@@ -36,12 +35,12 @@ public class ServicoDeCep {
             String jsonEmString = Util.converteJsonEmString(resposta);
             
             Gson gson = new Gson();
-            Endereco endereco = new gson.fromJson(jsonEmString, Endereco.class);
+            Endereco endereco = gson.fromJson(jsonEmString, Endereco.class);
             
             return endereco;
-        }
-        catch(Exception e){
-            throw new Exception("ERRO: "+ e);
-        }
+        //}
+        //catch(Exception e){
+           // throw new Exception("ERRO: "+ e);
+        //}
     }
-}
+  }
